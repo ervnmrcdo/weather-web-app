@@ -1,7 +1,9 @@
 "use client";
-import fetchForecast from "@/hooks/fetchForecast";
+import WeatherCard from "../../../../../../components/WeatherCard";
+import fetchForecast from "../../../../../../hooks/fetchForecast";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import styles from "../../../../../../styles/forecast.module.css";
 
 export default function Page() {
   const { lat, long, name, country } = useParams();
@@ -29,13 +31,8 @@ export default function Page() {
   }, []);
 
   return (
-    <div>
-      <ul>
-        <li>{lat}</li>
-        <li>{long}</li>
-        <li>{name}</li>
-        <li>{country}</li>
-      </ul>
+    <div className={styles.weatherCardWrapper}>
+      <WeatherCard name={name} country={country} data={data} />
     </div>
   );
 }
